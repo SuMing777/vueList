@@ -69,15 +69,13 @@ export default {
   },
   methods:{
     randomRgb(){
-      let R = Math.floor(Math.random() * 100 + 130);
-      let G = Math.floor(Math.random() * 100 + 130);
-      let B = Math.floor(Math.random() * 100 + 130);
-      let r = Math.floor(Math.random() * 250);
-      let g = Math.floor(Math.random() * 250);
-      let b = Math.floor(Math.random() * 250);
+      let R = Math.floor(Math.random() * 250);
+      let G = Math.floor(Math.random() * 250);
+      let B = Math.floor(Math.random() * 250);
+      let A = 0.5; 
       return {
-        background:`rgb(${R},${G},${B})`,
-        color:`rgb(${r},${g},${b})`
+        background:`rgba(${R},${G},${B},${A})`,
+        color:`rgb(${B},${R},${G})`
       }
     }
   }
