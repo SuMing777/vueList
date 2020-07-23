@@ -1,0 +1,121 @@
+<template>
+  <ul class="list-table">
+    <li
+      v-for="p in filterPersons"
+      :key="p.id"
+      class="list-row"
+      :class="{'list-area' : isActive == 2}"
+      :style="randomRgb()"
+    >{{p.text}}</li>
+  </ul>
+</template>
+
+<script>
+export default {
+  name: 'navList',
+  props: {
+    message:{},
+    order:{},
+    value:{},
+  },
+  data(){
+    return{
+      persons: [
+        { id:1, text:'Aquamarine' },
+        { id:2, text:'Hotpink' },
+        { id:3, text:'Gold' },
+        { id:4, text:'Crimson' },
+        { id:5, text:'Blueviolet' },
+        { id:6, text:'Lightblue' },
+        { id:7, text:'flowerblue' },
+        { id:8, text:'Skyblue' },
+        { id:9, text:'Burlywood' },
+        { id:10, text:'orangered' },
+      ],
+      isActive: 1,
+      orderType: 0,
+      serchName: '',
+      childrenType: '',
+    }
+  },
+  computed:{
+    filterPersons(){
+      const { serchName, persons, orderType } = this;
+      let fPersons;
+      fPersons = persons.filter(p => p.text.indexOf(serchName) !== -1);
+      if(orderType !== 0){
+        fPersons.sort(function(p1, p2){
+          if(orderType === 2){
+            return p2.id - p1.id;
+          }else{
+            return p1.id - p2.id;
+          }
+        })
+      }
+      return fPersons;
+    },
+  },
+  watch:{
+    message(val){
+      this.childrenType = val;
+      this.isActive = val;
+    },
+    order(val){
+      this.orderType = val;
+    },
+    value(val){
+      this.serchName = val;
+    },
+  },
+  methods:{
+    randomRgb(){
+      let R = Math.floor(Math.random() * 100 + 130);
+      let G = Math.floor(Math.random() * 100 + 130);
+      let B = Math.floor(Math.random() * 100 + 130);
+      let r = Math.floor(Math.random() * 250);
+      let g = Math.floor(Math.random() * 250);
+      let b = Math.floor(Math.random() * 250);
+      return {
+        background:`rgb(${R},${G},${B})`,
+        color:`rgb(${r},${g},${b})`
+      }
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.list-table{
+  border-bottom:1px solid black;
+  border-left:1px solid black;
+  border-right:1px solid black;
+  width:650px;
+  list-style: none;
+  padding:0;
+  padding-bottom:50px;
+  padding-top:20px;
+  margin: 0;
+  height:700px;
+}
+.list-row{
+  height:50px;
+  line-height:50px;
+  width:600px;
+  margin:0 auto;
+  text-align: center;
+  font-weight: bold;
+  border:1px solid #999;
+  margin-bottom: 20px;
+}
+.list-area{
+  display: inline-block;
+  height:100px;
+  width:100px;
+  border:1px solid #999;
+  margin-left:22px;
+  margin-top:20px;
+  line-height: 100px;
+  text-align: center;
+}
+</style>
