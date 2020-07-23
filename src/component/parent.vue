@@ -45,7 +45,7 @@
 
 <style scoped>
   .index{
-    margin:150px auto;
+    margin:70px auto;
     width:700px;
   }
 </style>
