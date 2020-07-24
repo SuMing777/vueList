@@ -38,7 +38,7 @@
       },
       getValue(data){
         this.value = data;
-      }
+      },
     },
   }
 </script>

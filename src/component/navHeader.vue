@@ -13,7 +13,8 @@
     <input
       class="input"
       type="text"
-      @input="$emit('input', $event.target.value)"
+      @input="childInput"
+      v-model="value"
       placeholder="请输入列表中的关键字进行搜索"
     />
     <button
@@ -30,6 +31,15 @@
 </template>
 
 <script>
+function debounce(func, wait){
+  let timeout;
+  return function(event){
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.call(this, event);
+    }, wait);
+  }
+}
 export default {
   name: "navHeader",
   data() {
@@ -38,9 +48,9 @@ export default {
       btnActive: 1,
       orderType: 0,
       type: 0,
+      value: ''
     };
   },
-  watch: {},
   methods: {
     btnClick(index) {
       this.isActive = index;
@@ -59,11 +69,13 @@ export default {
         this.$emit("orderType", 2);
       }
     },
+    childInput:debounce(function(){
+      this.$emit('input', this.value);
+    }, 500)
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header {
   border: 1px solid black;
@@ -85,7 +97,7 @@ export default {
   padding: 0;
   margin-left: 20px;
   width:200px;
-  border-radius: 8px;
+  border-radius: 4px;
   border-color: limegreen;
 }
 input::-webkit-input-placeholder {
