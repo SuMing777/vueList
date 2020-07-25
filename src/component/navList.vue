@@ -76,6 +76,7 @@ export default {
       return {
         background: `rgba(${R},${G},${B},${A})`,
         color: `rgb(${B},${R},${G})`,
+        border: `2px solid rgb(${G},${G},${R})`,
       };
     },
   },
@@ -101,13 +102,11 @@ export default {
   margin: 20px auto;
   text-align: center;
   font-weight: bold;
-  border: 1px solid #999;
 }
 .list-area {
   display: inline-block;
   height: 100px;
   width: 100px;
-  border: 1px solid #999;
   margin-left: 22px;
   margin-top: 20px;
   line-height: 100px;
