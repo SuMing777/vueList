@@ -92,7 +92,7 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
-  height: 780px;
+  height: 775px;
   overflow: hidden;
 }
 .list-row {
